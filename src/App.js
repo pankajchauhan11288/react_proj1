@@ -7,6 +7,7 @@ import Seervices from "./Components/Pages/Seervices";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Layout/Navbar";
 import PageNotFound from "./Components/Pages/PageNotFound";
+import AddUser from "./Components/Users/AddUser";
 function App() {
   return (
     <>
@@ -19,6 +20,7 @@ function App() {
               <Route path="/About" element={<About />} />
               <Route path="/ContactUs" element={<ContactUs />} />
               <Route path="/Seervices" element={<Seervices />} />
+              <Route path="/Users/add" element={<AddUser/>}/>
               <Route path="*" element={<PageNotFound />} />
             </Routes>
           </dir>

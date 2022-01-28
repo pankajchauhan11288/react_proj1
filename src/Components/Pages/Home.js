@@ -1,10 +1,49 @@
-import React from 'react';
-
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 const Home = () => {
-  return <div>
+  const [users, setUser] = useState([]);
+  useEffect(() => {
+    loadUsers();
+  }, []);
+  const loadUsers = async () => {
+    const result = await axios.get("http://localhost:3005/user");
+    setUser(result.data.reverse());
+  };
+  return (
+    <div>
       <h1>Home Page</h1>
-      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis pariatur fugit neque, laboriosam et, animi incidunt officia ullam eaque officiis sequi recusandae alias ut aut ipsa dolore nam laudantium quos perspiciatis, doloremque rem optio. Nisi nemo alias perspiciatis numquam delectus voluptas aliquid recusandae, fugiat necessitatibus vero ea tempora sit voluptate totam dignissimos quam explicabo veritatis minima molestias quos? Tenetur modi tempora dignissimos et neque quas a saepe! Ipsam autem, cumque eveniet, necessitatibus quaerat minima obcaecati neque tenetur, iste incidunt deserunt sunt unde explicabo aut totam consequuntur officiis! Aliquam dolores non quis nulla aperiam temporibus iusto dignissimos accusantium est, ipsa fugiat dolore! Laborum inventore ipsum quisquam modi perspiciatis veniam aliquid assumenda hic quaerat. Adipisci mollitia dolorum, id fuga odit quidem ratione. Similique aspernatur fuga, culpa tempora ullam, consectetur voluptas officia illo dolore exercitationem consequuntur. Rem accusamus in, veniam magnam soluta, maxime dolor quis ratione pariatur deserunt architecto. Optio corporis temporibus sit, explicabo repellendus quo? Pariatur aliquid maxime laboriosam, veritatis illum libero commodi accusamus officia alias optio qui explicabo minus ut sed quod quo deleniti nobis adipisci dolorem animi. Exercitationem vitae quia repellendus porro molestias quas, qui beatae obcaecati unde totam nobis eos architecto eum tenetur, eaque et vero ipsa distinctio laborum minima. Impedit magni sunt a tenetur quas molestiae cum consectetur quia at quibusdam veritatis adipisci odio dicta iure ratione, tempore delectus. Soluta tenetur voluptate qui iure nobis est, nihil nisi ratione officia maxime quibusdam delectus numquam voluptatibus molestias? Tempore a at quisquam qui sit cupiditate eius, aperiam, explicabo soluta sequi quo dolores iste libero obcaecati assumenda non quod quaerat et natus repellat eveniet architecto aut! Fugiat sequi ipsa eum fuga. Reprehenderit veniam alias provident magnam officia eligendi perferendis doloribus ipsam laboriosam. Error amet tempora autem, maiores reiciendis ad adipisci laudantium nostrum accusantium nulla incidunt, laborum, modi dignissimos. Totam perferendis incidunt sunt repellendus autem consequuntur possimus ab odit suscipit ipsam molestiae ullam vitae architecto, voluptatem a, reprehenderit quibusdam deleniti blanditiis rerum odio est, alias magnam? Optio assumenda, dolorem, cumque quae inventore ipsam repellat nisi minima eos blanditiis in. Blanditiis laudantium dicta ipsam voluptate quae ad quas, voluptatum aliquam autem quos maxime consectetur minima pariatur! Ad laboriosam doloremque nesciunt debitis reprehenderit qui ipsum nisi dolor dolores tempora veritatis maiores tempore error incidunt, neque quaerat. Temporibus nisi quia iste harum ut, fugit quo voluptatem eius pariatur ea, odit aperiam. Quod voluptatem tenetur reiciendis sequi repellat officiis ratione quo tempora quasi velit similique sint earum adipisci maiores, esse obcaecati aliquid enim. Porro veniam nostrum aut. Architecto saepe inventore temporibus laboriosam, possimus eaque tenetur consequatur ab dicta magnam molestiae quis accusamus vero ipsum quos dolores necessitatibus rem obcaecati! Placeat maiores distinctio tempora, fugit voluptas unde modi esse? Labore autem unde recusandae tempore necessitatibus est ut earum molestias totam quidem mollitia enim ratione nihil eius aut eligendi, dolorum illum sed doloremque incidunt vitae vel repudiandae. Obcaecati quae at velit aperiam commodi. Cum doloremque repellendus quaerat enim necessitatibus iusto officiis ipsam dolores fuga quasi nostrum dolor praesentium commodi voluptate, voluptatibus aliquam vero? Tempore ducimus facilis quidem esse.</p>
-  </div>;
+      <table className="table caption-top border shadow">
+        <thead className="table-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">User Name</th>
+            <th scope="col">Email</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            users.map((users,index)=>(
+              <tr>
+                <th scope="row">{index+1}</th>
+                <td>{users.name}</td>
+                <td>{users.username}</td>
+                <td>{users.email}</td>
+                <td>
+                  <Link className="btn btn-primary m-2" to="">View</Link>
+                  <Link className="btn btn-success m-2" to="">Edit</Link>
+                  <Link className="btn btn-danger" to="">Delete</Link>
+                </td>
+              </tr>
+
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 export default Home;
