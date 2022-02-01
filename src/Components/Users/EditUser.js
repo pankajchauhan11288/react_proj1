@@ -1,7 +1,8 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-const AddUser = () => {
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+const EditUser = () => {
+  const { id } = useParams();
   let navigate = useNavigate();
   const [user, setUser] = useState({
     name: "",
@@ -14,15 +15,22 @@ const AddUser = () => {
   const onChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
+  useEffect(() => {
+    loadUser();
+  }, []);
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:3005/user", user);
+    await axios.put(`http://localhost:3005/user/${id}`, user);
     navigate("/");
+  };
+  const loadUser = async () => {
+    const result = await axios.get(`http://localhost:3005/user/${id}`);
+    setUser(result.data);
   };
   return (
     <div className="container">
       <div className="w-75 mx-auto shadow p-5">
-        <h2 className="text-center mb-4">Add A User</h2>
+        <h2 className="text-center mb-4">Edit A User</h2>
         <form onSubmit={(e) => onSubmit(e)}>
           <div className="form-group p-2">
             <input
@@ -75,7 +83,9 @@ const AddUser = () => {
             />
           </div>
           <div className="form-group p-2">
-            <button className="form-control form-control-lg btn btn-primary btn-block p-2">Add User</button>
+            <button className="form-control form-control-lg btn btn-warning btn-block p-2">
+              Update User
+            </button>
           </div>
         </form>
       </div>
@@ -83,4 +93,4 @@ const AddUser = () => {
   );
 };
 
-export default AddUser;
+export default EditUser;
