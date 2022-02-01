@@ -1,29 +1,31 @@
-import React from 'react';
+import React from "react";
 
 const ContactUs = () => {
-  return <div>
-      <h1>Contact Us</h1>
+  return (
+    <div>
       <div className="mb-3">
-  <label for="formFile" className="form-label">Default file input example</label>
-  <input className="form-control" type="file" id="formFile"/>
-</div>
-<div className="mb-3">
-  <label for="formFileMultiple" className="form-label">Multiple files input example</label>
-  <input className="form-control" type="file" id="formFileMultiple" multiple/>
-</div>
-<div className="mb-3">
-  <label for="formFileDisabled" className="form-label">Disabled file input example</label>
-  <input className="form-control" type="file" id="formFileDisabled" disabled/>
-</div>
-<div className="mb-3">
-  <label for="formFileSm" className="form-label">Small file input example</label>
-  <input className="form-control form-control-sm" id="formFileSm" type="file"/>
-</div>
-<div>
-  <label for="formFileLg" className="form-label">Large file input example</label>
-  <input className="form-control form-control-lg" id="formFileLg" type="file"/>
-</div>
-  </div>;
+        <label for="exampleFormControlInput1" className="form-label">
+          Email address
+        </label>
+        <input
+          type="email"
+          className="form-control"
+          id="exampleFormControlInput1"
+          placeholder="name@example.com"
+        />
+      </div>
+      <div className="mb-3">
+        <label for="exampleFormControlTextarea1" className="form-label">
+          Example textarea
+        </label>
+        <textarea
+          className="form-control"
+          id="exampleFormControlTextarea1"
+          rows="3"
+        ></textarea>
+      </div>
+    </div>
+  );
 };
 
 export default ContactUs;
